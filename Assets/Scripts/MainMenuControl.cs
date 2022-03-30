@@ -1,23 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuControl : MonoBehaviour
 {
-    public Camera menuCam;
-    public Camera gameCam;
-    public GameObject player;
     public GameObject mainMenu;
     public GameObject controlsMenu;
-    public GameObject pauseMenu;
 
     public void startGame()
     {
-        this.gameObject.SetActive(false);
-        menuCam.enabled = false;
-        gameCam.enabled = true;
-        pauseMenu.SetActive(true);
-        player.GetComponent<PlayerMovement>().enabled = true;
+        SceneManager.LoadScene(1);
     }
 
     public void goToControls()

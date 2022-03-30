@@ -35,15 +35,15 @@ public class GameEnding : MonoBehaviour
     {
         if (m_IsPlayerAtExit)
         {
-            EndLevel(exitBackgroundImageCanvasGroup, exitAudio);
+            EndLevel(exitBackgroundImageCanvasGroup, exitAudio, false);
         }
         else if (m_IsPlayerCaught)
         {
-            EndLevel(caughtBackgroundImageCanvasGroup, caughtAudio);
+            EndLevel(caughtBackgroundImageCanvasGroup, caughtAudio, true);
         }
     }
 
-    void EndLevel(CanvasGroup imageCanvasGroup, AudioSource audioSource)
+    void EndLevel(CanvasGroup imageCanvasGroup, AudioSource audioSource, bool restartLevel)
     {
         if(!m_HasAudioPlayed)
         {
@@ -54,7 +54,14 @@ public class GameEnding : MonoBehaviour
         imageCanvasGroup.alpha = m_Timer / fadeDuration;
         if (m_Timer > fadeDuration + displayImageDuration)
         {
-            SceneManager.LoadScene(0);
+            if (restartLevel)
+            {
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }
